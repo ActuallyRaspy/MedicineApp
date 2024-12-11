@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MedicineApp.Views.ProductPage"
+             Shell.TabBarIsVisible="False"
+             BindingContext="ProductPageViewModel">
+
+    
+
+    <ContentPage.Content>
+        <Grid>
+            <StackLayout Orientation="Vertical">
+                <StackLayout Orientation="Horizontal" 
+                             BackgroundColor="LightSteelBlue"
+                             Padding="10"
+                             Grid.Row="0">
+                    <Label Text="Medicines" 
+                           VerticalOptions="Center" 
+                           FontSize="Title"
+                           HorizontalOptions="StartAndExpand" />
+                    <Button Text="Cart" 
+                            VerticalOptions="Center" 
+                            Command="{Binding NavigateToCartCommand}"
+                            FontSize="Medium"
+                            BackgroundColor="Transparent"
+                            HorizontalOptions="End" />
+                </StackLayout>
+
+                <ListView x:Name="MedicineListView"
+                          HasUnevenRows="True"
+                          ItemsSource="{Binding Products}"
+                          SelectedItem="{Binding SelectedProduct, Mode=TwoWay}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal" Padding="10">
+                                    <Image Source="{Binding Icon}" Aspect="AspectFill" WidthRequest="50" HeightRequest="50" />
+                                    <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand" Margin="5,0,0,0">
+                                        <Label Text="{Binding Name}" FontSize="Medium" FontAttributes="Bold" />
+                                        <Label Text="{Binding Description}" FontSize="Small" LineBreakMode="TailTruncation" />
+                                    </StackLayout>
+                                    <Label Text="{Binding Price, StringFormat='${0:F2}'}" VerticalOptions="Center" />
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

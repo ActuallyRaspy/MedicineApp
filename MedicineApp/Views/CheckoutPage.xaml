@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MedicineApp.Views.CheckoutPage"
+             Title="Checkout"
+             Shell.TabBarIsVisible="False">
+    <ContentPage.Content>
+        <StackLayout Padding="20">
+            <ListView BackgroundColor="LightSteelBlue" ItemsSource="{Binding CartItems}" HasUnevenRows="True">
+                <ListView.ItemTemplate >
+                    <DataTemplate >
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" Padding="10"> 
+                                <Label Text="{Binding Amount, StringFormat='{0}x '}" />
+                                <Label Text="{Binding Medicine.Name}" FontAttributes="Bold" />
+                                <Label Text="{Binding Medicine.Price, StringFormat='    {0:C}'}" />
+                                <Label Text="{Binding TotalPrice, StringFormat='Total: {0:C}'}" HorizontalOptions="EndAndExpand"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <StackLayout BackgroundColor="LightSteelBlue" Padding="5" Margin="0,20,0,20" >
+                <Entry Placeholder="Name" PlaceholderColor="DarkSlateGrey" Text="{Binding Name}" />
+                <Entry Placeholder="Address" PlaceholderColor="DarkSlateGrey" Text="{Binding Address}" />
+                <Entry Placeholder="Email" PlaceholderColor="DarkSlateGrey" Text="{Binding UserEmail}" Keyboard="Email" />
+                <Entry Placeholder="Phone Number" PlaceholderColor="DarkSlateGrey" Text="{Binding Phone}" Keyboard="Telephone"/>
+            </StackLayout>
+            
+            <Label Text="{Binding TotalPrice, StringFormat='Total: {0:C}'}" FontSize="Large" HorizontalOptions="Center" Margin="0,20,0,20" />
+
+            <Button Text="Checkout"
+                    BackgroundColor="Green"
+                    HeightRequest="75"
+                    TextColor="White"
+                    Command="{Binding CheckoutCommand}" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

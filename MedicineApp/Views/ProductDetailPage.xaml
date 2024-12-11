@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MedicineApp.Views.ProductDetailPage"
+             Shell.TabBarIsVisible="False">
+    <ContentPage.Content>
+        <StackLayout Padding="20" Spacing="15">
+            <Image Source="{Binding Medicine.Icon}" WidthRequest="100" HeightRequest="100" />
+            <Label Text="{Binding Medicine.Name}" FontSize="Large" Margin="0,10,0,0" />
+            <Label Text="{Binding Medicine.Description}" FontSize="14" />
+            <Label Text="{Binding Medicine.Price, StringFormat='Price: {0:C}'}" FontSize="18" />
+
+            <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                <Label Text="Quantity: " VerticalOptions="Center" />
+                <Label Text="{Binding Quantity}" 
+                       FontAttributes="Bold" 
+                       VerticalOptions="Center" 
+                       HorizontalOptions="Center" 
+                       WidthRequest="30" />
+                <Stepper Minimum="1" 
+                         Maximum="99" 
+                         Increment="1" 
+                         Value="{Binding Quantity}" />
+            </StackLayout>
+
+            <Button Text="Add to Cart" 
+                    BackgroundColor="Green" 
+                    TextColor="White"
+                    Command="{Binding AddToCartCommand}" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
